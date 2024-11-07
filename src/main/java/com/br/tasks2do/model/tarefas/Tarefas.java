@@ -1,5 +1,6 @@
 package com.br.tasks2do.model.tarefas;
 
+import com.br.tasks2do.model.usuario.Usuario;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,4 +26,7 @@ public class Tarefas {
     private Date data_de_adicao;
     private StatusDaTarefa status_da_tarefa;
 
+    @ManyToOne
+    @JoinColumn (name = "usuario_id", nullable = false)
+    private Usuario usuario;
 }
