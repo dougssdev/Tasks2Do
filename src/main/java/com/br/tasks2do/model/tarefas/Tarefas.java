@@ -1,6 +1,7 @@
 package com.br.tasks2do.model.tarefas;
 
 import com.br.tasks2do.model.usuario.Usuario;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,5 +29,14 @@ public class Tarefas {
 
     @ManyToOne
     @JoinColumn (name = "usuario_id", nullable = false)
+    @JsonBackReference
     private Usuario usuario;
+
+    public Tarefas (CadastraTarefa dados){
+        this.nome = dados.nome();
+        this.descricao = dados.descricao();
+        this.data_de_adicao = dados.data_de_adicao();
+        this.status_da_tarefa = StatusDaTarefa.Fazendo;
+
+    }
 }

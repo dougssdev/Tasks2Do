@@ -1,6 +1,7 @@
 package com.br.tasks2do.model.usuario;
 
 import com.br.tasks2do.model.tarefas.Tarefas;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,5 +27,12 @@ public class Usuario {
     private String email;
 
     @OneToMany (mappedBy = "usuario")
+    @JsonManagedReference
     private List<Tarefas> tarefasList;
+
+    public Usuario(CadastroUsuario user) {
+        this.username = user.username();
+        this.email = user.email();
+        this.senha = user.senha();
+    }
 }
