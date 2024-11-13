@@ -4,11 +4,11 @@ public record DetalhamentoUsuario(
 
         Integer id,
 
-        String username
+        String login
 
 ) {
 
     public  DetalhamentoUsuario(Usuario user){
-            this(user.getId(), user.getUsername());
+            this(user.getUsuario_id(), user.getLogin());
     }
 }

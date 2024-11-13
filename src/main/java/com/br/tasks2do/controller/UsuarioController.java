@@ -13,15 +13,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/user")
 public class UsuarioController {
 
-    @Autowired
-    private UsuarioRepository ur;
-
-    @PostMapping("/cadastro")
-    public Usuario criaUsuario(@RequestBody CadastroUsuario user){
-        Usuario novoUsuario = new Usuario(user);
-        ur.save(novoUsuario);
-        return novoUsuario;
-    }
-
 
 }

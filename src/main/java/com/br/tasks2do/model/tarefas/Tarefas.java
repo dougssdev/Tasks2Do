@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 
 @Entity (name = "Tarefas")
@@ -21,16 +22,14 @@ public class Tarefas {
 
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private int id;
+    private int tarefas_id;
     private String nome;
     private String descricao;
     private Date data_de_adicao;
     private StatusDaTarefa status_da_tarefa;
 
-    @ManyToOne
-    @JoinColumn (name = "usuario_id", nullable = false)
-    @JsonBackReference
-    private Usuario usuario;
+    @ManyToMany(mappedBy = "tarefas")
+    private List<Usuario> usuario;
 
     public Tarefas (CadastraTarefa dados){
         this.nome = dados.nome();

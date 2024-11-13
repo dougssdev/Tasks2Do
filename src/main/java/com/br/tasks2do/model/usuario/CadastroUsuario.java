@@ -4,9 +4,8 @@ import jakarta.validation.constraints.NotBlank;
 public record CadastroUsuario(
 
         @NotBlank
-            String username,
-        @NotBlank
-        String email,
+            String login,
+
         @NotBlank
             String senha
 
