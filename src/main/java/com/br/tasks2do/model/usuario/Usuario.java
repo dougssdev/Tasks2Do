@@ -20,12 +20,13 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Usuario {
+public class Usuario implements UserDetails{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int usuario_id;
 
+    @Column(nullable = false, unique = true)
     private String login;
     private String senha;
 
@@ -45,6 +46,22 @@ public class Usuario {
     public Usuario(RegisterRequestDTO dados) {
         this.login = dados.login();
         this.senha = dados.senha();
+    }
+
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @Override
+    public String getPassword() {
+        return senha;
+    }
+
+    @Override
+    public String getUsername() {
+        return login;
     }
 }
 
