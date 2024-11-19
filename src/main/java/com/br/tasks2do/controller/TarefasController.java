@@ -2,14 +2,13 @@ package com.br.tasks2do.controller;
 
 import com.br.tasks2do.dto.TarefaResponseDTO;
 import com.br.tasks2do.model.tarefas.CadastraTarefa;
+import com.br.tasks2do.model.tarefas.StatusDaTarefa;
 import com.br.tasks2do.model.tarefas.Tarefas;
 import com.br.tasks2do.model.usuario.Usuario;
 import com.br.tasks2do.repository.TarefasRepository;
 import com.br.tasks2do.repository.UsuarioRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -98,4 +97,51 @@ public class TarefasController {
         tr.delete(tarefas);
         return ResponseEntity.noContent().build();
     }
+
+    @PostMapping("/status/feita/{id}")
+    @Transactional
+    public ResponseEntity<TarefaResponseDTO> tarefaFeita(@PathVariable Integer id){
+
+        Authentication userLogado = SecurityContextHolder.getContext().getAuthentication();
+        String username = userLogado.getName();
+
+        Usuario usuario = ur.findByLogin(username)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+
+        Tarefas tarefas = tr.findById(id).orElseThrow(() -> new RuntimeException("Tarefa não encontrada."));
+
+        if(!tarefas.getUsuario().contains(usuario)){
+            throw new RuntimeException("Tarefa não pertence ao usuário.");
+        }
+
+        tarefas.setStatus_da_tarefa(StatusDaTarefa.Feita);
+        Tarefas tarefaSalva = tr.save(tarefas);
+        TarefaResponseDTO tarefaResponseDTO = new TarefaResponseDTO(tarefaSalva, usuario.getUsuario_id());
+
+        return ResponseEntity.ok(tarefaResponseDTO);
+    }
+
+    @PostMapping("/status/nao_iniciada/{id}")
+    @Transactional
+    public ResponseEntity<TarefaResponseDTO> tarefaNaoIniciada(@PathVariable Integer id){
+
+        Authentication userLogado = SecurityContextHolder.getContext().getAuthentication();
+        String username = userLogado.getName();
+
+        Usuario usuario = ur.findByLogin(username)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+
+        Tarefas tarefas = tr.findById(id).orElseThrow(() -> new RuntimeException("Tarefa não encontrada."));
+
+        if(!tarefas.getUsuario().contains(usuario)){
+            throw new RuntimeException("Tarefa não pertence ao usuário.");
+        }
+
+        tarefas.setStatus_da_tarefa(StatusDaTarefa.Não_Iniciado);
+        Tarefas tarefaSalva = tr.save(tarefas);
+        TarefaResponseDTO tarefaResponseDTO = new TarefaResponseDTO(tarefaSalva, usuario.getUsuario_id());
+
+        return ResponseEntity.ok(tarefaResponseDTO);
+    }
+
 }
