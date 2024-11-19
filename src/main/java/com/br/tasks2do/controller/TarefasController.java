@@ -6,13 +6,17 @@ import com.br.tasks2do.model.tarefas.Tarefas;
 import com.br.tasks2do.model.usuario.Usuario;
 import com.br.tasks2do.repository.TarefasRepository;
 import com.br.tasks2do.repository.UsuarioRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping ("/tarefas")
@@ -50,5 +54,48 @@ public class TarefasController {
 
         return ResponseEntity.ok(tarefaDTO);
 
+    }
+
+    @GetMapping("/minhas_tarefas")
+    public ResponseEntity<List<TarefaResponseDTO>> listaTarefa(){
+
+        Authentication userLogado = SecurityContextHolder.getContext().getAuthentication();
+        String username = userLogado.getName();
+
+        Usuario usuario = ur.findByLogin(username)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+
+        List<Tarefas> tarefas = tr.findByUsuario(usuario.getUsuario_id());
+
+        List<TarefaResponseDTO> tarefasDoUsuario = tarefas.stream().
+                map(tarefa -> new TarefaResponseDTO(tarefa, usuario.getUsuario_id()))
+                .toList();
+
+        return ResponseEntity.ok(tarefasDoUsuario);
+    }
+
+    @DeleteMapping("/excluir/{id}")
+    @Transactional
+    public ResponseEntity<Void> deletaTarefa(@PathVariable Integer id){
+
+        Authentication userLogado = SecurityContextHolder.getContext().getAuthentication();
+        String username = userLogado.getName();
+
+        Usuario usuario = ur.findByLogin(username)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+
+        Tarefas tarefas = tr.findById(id).orElseThrow(() -> new RuntimeException("Tarefa não encontrada."));
+
+        if(!tarefas.getUsuario().contains(usuario)){
+            throw new RuntimeException("Tarefa não pertence ao usuário.");
+        }
+
+        usuario.getTarefas().remove(tarefas);
+        tarefas.getUsuario().remove(usuario);
+
+        ur.save(usuario);
+
+        tr.delete(tarefas);
+        return ResponseEntity.noContent().build();
     }
 }
