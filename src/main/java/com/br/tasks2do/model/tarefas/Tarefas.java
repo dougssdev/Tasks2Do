@@ -1,5 +1,6 @@
 package com.br.tasks2do.model.tarefas;
 
+import com.br.tasks2do.dto.AtualizaTarefaDTO;
 import com.br.tasks2do.model.usuario.Usuario;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -38,5 +39,11 @@ public class Tarefas {
         this.descricao = dados.descricao();
         this.data_de_adicao = LocalDate.now();
         this.status_da_tarefa = StatusDaTarefa.Fazendo;
+    }
+
+    public Tarefas (AtualizaTarefaDTO dados){
+        this.tarefas_id = dados.id();
+        this.nome = dados.nome();
+        this.descricao = dados.descricao();
     }
 }
