@@ -133,5 +133,21 @@ public class TarefasController {
         return ResponseEntity.ok(tarefaResponseDTO);
     }
 
+    @PostMapping("/atualizar_tarefa")
+    @Transactional
+    public ResponseEntity<TarefaResponseDTO> atualizaTarefa(@RequestBody AtualizaTarefaDTO dados){
+
+        Usuario usuario = ts.buscaUsuarioLogado();
+
+        Tarefas tarefa = ts.buscaTarefa(dados.id());
+
+        tarefa.setNome(dados.nome());
+        tarefa.setDescricao(dados.descricao());
+        Tarefas tarefaSalva = tr.save(tarefa);
+
+        TarefaResponseDTO dto = new TarefaResponseDTO(tarefaSalva, usuario.getUsuario_id());
+
+        return ResponseEntity.ok(dto);
+    }
 
 }
