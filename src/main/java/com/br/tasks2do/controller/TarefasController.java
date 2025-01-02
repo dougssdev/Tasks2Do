@@ -133,7 +133,7 @@ public class TarefasController {
         return ResponseEntity.ok(tarefaResponseDTO);
     }
 
-    @PostMapping("/atualizar_tarefa")
+    @PutMapping("/atualizar_tarefa")
     @Transactional
     public ResponseEntity<TarefaResponseDTO> atualizaTarefa(@RequestBody AtualizaTarefaDTO dados){
 
