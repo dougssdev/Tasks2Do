@@ -1,8 +1,34 @@
-
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import "./Login.css";
-
+import api from "../../services/axiosConfig.tsx"
 
 const Login = () => {
+
+  const [login, setLogin] = useState("");
+  const [senha, setSenha] = useState("");
+  const [error, setError] = useState("");
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    try {
+      const response = await api.post("/auth/login", {
+        login,
+        senha,
+      });
+      
+      const token = response.data.token;
+
+
+      localStorage.setItem("token", token);
+
+      window.location.href = "/minhas_tarefas"
+      console.log(response)
+    } catch (err: any) {
+      setError("Credenciais inválidas. Tente novamente.");
+    }
+  };
 
  
   return (
@@ -16,16 +42,28 @@ const Login = () => {
       </div>
 
       <div className="container">
-        <form>
-            <div className='username'>
+        <form onSubmit={handleLogin}>
+            <div className='login
+            '>
                 <h2>Nome de usuário: </h2>
-                <input id = 'username' name = 'username' type="text" placeholder="Nome de usuário"></input>
+                <input id = 'login' 
+                name = 'login' 
+                type="text" placeholder="Nome de usuário"
+                value={login }
+                onChange={(e) => setLogin
+                  (e.target.value)}
+                ></input>
                
             </div>
-            <div className='password'>
+            <div className='senha'>
                 <h2>Senha: </h2>
-                <input id= 'password' name= 'password' type="password" placeholder="Sua senha"></input>
-              
+                <input id= 'senha'
+                 name= 'senha' 
+                 type="password" 
+                 placeholder="Sua senha"
+                 value={senha}
+                onChange={(e) => setSenha
+                (e.target.value)}></input>
             </div>
 
             <div className='recall-forget'>
@@ -35,7 +73,9 @@ const Login = () => {
             </label>
             </div>
 
-            <button className='entrar'> Entrar </button>
+            {error && <p className="error">{error}</p>}
+
+            <button className='entrar' type="submit"> Entrar </button>
 
             <div className='signup-link'>
                 <p>É novo por aqui? <a href='#'> Cadastre-se </a></p>

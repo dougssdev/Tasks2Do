@@ -67,12 +67,12 @@ input[type="password"] {
 
 input[type="text"]:focus,
 input[type="password"]:focus {
-    border-color: #74c69d; 
+    border-color: #40d448; 
 }
 
 
 .entrar {
-    background-color: #74c69d; 
+    background-color: #40d448; 
     color: white;
     border: none;
     border-radius: 20px;
