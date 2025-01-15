@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import "./Login.css";
+import React, { useState } from "react";
+import "./Cadastro.css";
 import api from "../../services/axiosConfig.tsx"
 
-const Login = () => {
+const Cadastro = () => {
 
   const [login, setLogin] = useState("");
   const [senha, setSenha] = useState("");
@@ -13,7 +12,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await api.post("/auth/login", {
+      const response = await api.post("/auth/cadastro", {
         login,
         senha,
       });
@@ -75,11 +74,8 @@ const Login = () => {
 
             {error && <p className="error">{error}</p>}
 
-            <button className='entrar' type="submit"> Entrar </button>
+            <button className='entrar' type="submit"> Cadastre-se </button>
 
-            <div className='signup-link'>
-                <p>É novo por aqui? <a href='#'> Cadastre-se </a></p>
-            </div>
 
         </form>
       </div>
@@ -87,4 +83,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Cadastro
