@@ -1,0 +1,111 @@
+/* Estilos gerais */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+  }
+  
+  .bar {
+    width: 100%;
+    height: 100px; 
+    background-color: black;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    position: fixed; 
+    top: 0; 
+    z-index: 1000;
+    
+  }
+  
+
+  
+  .logout-button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    padding-left: 80%;
+
+  }
+  
+  
+  .main-content {
+    padding: 20px;
+    text-align: center;
+    margin-top: 200px;
+  }
+  
+  .main-content h2 {
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .tasks-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 colunas iguais */
+    grid-template-rows: repeat(3, auto); /* 3 linhas automáticas */
+    gap: 20px; /* Espaçamento entre os cartões */
+    padding: 20px;
+    justify-items: center; /* Centraliza os itens horizontalmente */
+    align-items: center; /* Centraliza os itens verticalmente */
+    
+  }
+  
+  .task-card {
+    background-color: #ffffff; /* Cor de fundo branca */
+    border-radius: 10px; /* Bordas arredondadas */
+    padding: 20px 20px ; 
+    text-align: left;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Sombra maior */
+    transition: transform 0.3s, box-shadow 0.3s;
+    width: 300px; /* Largura maior para o cartão */
+    height: 220px; /* Altura fixa maior */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Espaçamento entre os elementos do cartão */
+  }
+  
+  .task-card:hover {
+    transform: translateY(-10px); /* Destaque ao passar o mouse */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra mais intensa */
+  }
+  
+  .status-icon {
+    font-size: 28px; 
+    margin-bottom: 15px;
+  }
+  
+  .task-card p {
+    margin: 5px 0; /* Espaçamento entre os parágrafos */
+  }
+  
+  .task-card p strong {
+    font-weight: bold;
+  }
+  
+  .task-card p.nome {
+    font-size: 24px; /* Maior destaque para o nome */
+    font-weight: bold;
+    color: #333333; /* Cor escura */
+  }
+  
+  
+  .create-task-button {
+    margin-top: 20px;
+    padding: 30px 60px; 
+    background-color: #7ED956;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 32px;
+    transition: background-color 0.2s;
+  }
+  
+  .create-task-button:hover {
+    background-color: darkgreen;
+  }
+  
