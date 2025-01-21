@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Login.css";
 import api from "../../services/axiosConfig.tsx"
 
@@ -6,7 +6,18 @@ const Login = () => {
 
   const [login, setLogin] = useState("");
   const [senha, setSenha] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    const savedLogin = localStorage.getItem("savedLogin");
+    if(savedLogin){
+      setLogin(savedLogin);
+      setRememberMe (true);
+    }
+  }, []);
+  
+
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -19,9 +30,14 @@ const Login = () => {
       
       const token = response.data.token;
 
+      if(rememberMe){
+        localStorage.setItem("savedLogin", login);
+      } else {
+        localStorage.removeItem("savedLogin");
+      }
+
 
       localStorage.setItem("token", token);
-
       window.location.href = "/minhas_tarefas"
       console.log(response)
     } catch (err: any) {

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import api from "../../services/axiosConfig";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle, faCircleNotch, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 
 
 interface Task {
@@ -31,6 +32,16 @@ const Tasks = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+   
+    localStorage.removeItem("token");
+    
+    navigate("/login");
+  };
+
+
   useEffect(() => {
     const fetchTasks = async () => {
       try {
@@ -56,7 +67,7 @@ const Tasks = () => {
         <div className='logo'>
         <img src="src\assets\TASKS__2_-removebg-preview.png" alt="Logo Tasks2Do"/>
         </div>
-        <button className='logout-button'> Sair </button>
+        <button className='logout-button' onClick={handleLogout}> Sair </button>
       </div>
 
       
