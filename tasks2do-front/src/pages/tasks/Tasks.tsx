@@ -2,7 +2,7 @@ import "../tasks/Tasks.css";
 import { useEffect, useState } from "react";
 import api from "../../services/axiosConfig";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheckCircle, faCircleNotch, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
+import { faCheckCircle, faEllipsisH, faCircleMinus } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 
 
@@ -11,17 +11,17 @@ interface Task {
   nome: string;
   descricao: string;
   data_de_adicao: string;
-  status_da_tarefa: "Não_Iniciado" | "Feita" | "Fazendo";
+  statusDaTarefa: "Não_Iniciado" | "Feita" | "Fazendo";
 }
 
-const getStatusIcon = (status: Task["status_da_tarefa"]) => {
+const getStatusIcon = (status: Task["statusDaTarefa"]) => {
   switch (status) {
     case "Feita":
       return <FontAwesomeIcon icon={faCheckCircle} color="green" />;
     case "Fazendo":
-      return <FontAwesomeIcon icon={faCircleNotch} color="blue" />;
+      return <FontAwesomeIcon icon={faEllipsisH} color="blue" />;
     case "Não_Iniciado":
-      return <FontAwesomeIcon icon={faTimesCircle} color="red" />;
+      return <FontAwesomeIcon icon={faCircleMinus} color="gray" />;
     default:
       return null;
   }
@@ -72,7 +72,7 @@ const Tasks = () => {
 
       
       <main className="main-content">
-        <h2>Minhas Tarefas</h2>
+        <h1>Minhas Tarefas</h1>
 
         {isLoading && <p>Carregando tarefas...</p>}
         {error && <p className="error-message">{error}</p>}
@@ -83,7 +83,7 @@ const Tasks = () => {
           )}
           {tasks.map((task) => (
             <div key={task.tarefas_id} className="task-card">
-              <div className="status-icon">{getStatusIcon(task.status_da_tarefa)}</div>
+              <div className="status-icon">{getStatusIcon(task.statusDaTarefa)}</div>
               <p>
                 <p className="nome">Nome: {task.nome}</p> 
               </p>
