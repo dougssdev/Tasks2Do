@@ -1,42 +1,13 @@
-
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #F0F9F0;   
-    height: 100vh;
-}
-
-
-
-.bar {
-    width: 100%;
-    height: 100px; 
-    background-color: black;
+.main-content-login {
+    padding: 20px;
+    text-align: center;
+    margin-top: 50px;
     display: flex;
-    align-items: center;
-    padding-left: 20px;
-    position: fixed; 
-    top: 0; 
-    z-index: 1000;
-   
-  }
-  
-  
-  .logo img {
-    height: 200px; 
-    object-fit: contain;
-  }
-  
- 
-  .container {
-    margin-top: 200px; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
-  }
-  
-
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
 
 form {
     background-color: white;
@@ -47,32 +18,32 @@ form {
 }
 
 
-label {
-    text-align: left;
-    font-size: 14px;
-    color: #333;
+.recall-forget {
+    text-align: center;
+    font-size: 16px;
+    color: #000000;
 }
 
 
-input[type="text"],
-input[type="password"] {
+#login,
+#senha {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 20px;
+    border: 1px solid #000000;
+    border-radius: 60px;
     font-size: 14px;
     outline: none;
     box-sizing: border-box;
 }
 
-input[type="text"]:focus,
-input[type="password"]:focus {
-    border-color: #7ED956; 
+#login:focus,
+#senha:focus {
+    border-color: #7ED956;
 }
 
 
 .entrar {
-    background-color: #7ED956; 
+    background-color: #7ED956;
     color: white;
     border: none;
     border-radius: 20px;
@@ -82,24 +53,24 @@ input[type="password"]:focus {
     transition: background-color 0.3s ease;
 }
 
+
 .entrar:hover {
-    background-color: #52b788;
+    background-color: #10b943;
 }
 
 
-.cadastro {
+.signup-link {
     margin-top: 10px;
     font-size: 14px;
     color: #666;
 }
 
-.cadastro a {
-    color: #52b788;
+.signup-link a {
+    color: #26c32e;
     text-decoration: none;
     font-weight: bold;
 }
 
-.cadastro a:hover {
+.signup-link a:hover {
     text-decoration: underline;
 }
-

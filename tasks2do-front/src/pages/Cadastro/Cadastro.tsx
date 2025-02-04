@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Cadastro.css";
+import "../Login/Login.css";
 import api from "../../services/axiosConfig.tsx"
 
 const Cadastro = () => {
@@ -34,13 +34,7 @@ const Cadastro = () => {
     
     <div>
 
-      <div className='bar'>
-        <div className='logo'>
-        <img src="src\assets\TASKS__2_-removebg-preview.png" alt="Logo Tasks2Do"/>
-        </div>
-      </div>
-
-      <div className="container">
+      <div className="main-content-login">
         <form onSubmit={handleLogin}>
             <div className='login
             '>
@@ -67,8 +61,7 @@ const Cadastro = () => {
 
             <div className='recall-forget'>
             <label>
-              <input type='checkbox'></input>
-              Lembrar do usuário
+              Lembrar do usuário<input type='checkbox'></input>
             </label>
             </div>
 

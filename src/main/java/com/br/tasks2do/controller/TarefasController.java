@@ -150,4 +150,14 @@ public class TarefasController {
         return ResponseEntity.ok(dto);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<TarefaResponseDTO> retornaTarefa(@PathVariable Integer id){
+        Usuario usuario = ts.buscaUsuarioLogado();
+
+        Tarefas tarefa = ts.buscaTarefa(id);
+
+        TarefaResponseDTO dto = new TarefaResponseDTO(tarefa, usuario.getUsuario_id());
+        return ResponseEntity.ok(dto);
+    }
+
 }

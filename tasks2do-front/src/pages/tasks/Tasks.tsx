@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 
 interface Task {
-  tarefas_id: number;
+  id: number;
   nome: string;
   descricao: string;
   data_de_adicao: string;
@@ -34,13 +34,6 @@ const Tasks = () => {
 
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-   
-    localStorage.removeItem("token");
-    
-    navigate("/login");
-  };
-
 
   useEffect(() => {
     const fetchTasks = async () => {
@@ -48,6 +41,7 @@ const Tasks = () => {
         setIsLoading(true);
         const response = await api.get("/tarefas/minhas_tarefas");
         setTasks(response.data);
+        console.log(response.data);
         setError(null);
       } catch (error) {
         console.error("Erro ao buscar tarefas:", error);
@@ -62,15 +56,6 @@ const Tasks = () => {
 
   return (
     <div className="tasks-page">
-      
-       <div className='bar'>
-        <div className='logo'>
-        <img src="src\assets\TASKS__2_-removebg-preview.png" alt="Logo Tasks2Do"/>
-        </div>
-        <button className='logout-button' onClick={handleLogout}> Sair </button>
-      </div>
-
-      
       <main className="main-content">
         <h1>Minhas Tarefas</h1>
 
@@ -79,13 +64,16 @@ const Tasks = () => {
 
         <div className="tasks-container">
           {!isLoading && !error && tasks.length === 0 && (
-            <p>Nenhuma tarefa encontrada.</p>
+            <p>Você ainda não possui tarefas. </p>
           )}
           {tasks.map((task) => (
-            <div key={task.tarefas_id} className="task-card">
+            <div key={task.id}
+              className="task-card"
+              onClick={() => navigate(`/tarefas/${task.id}`)}
+            >
               <div className="status-icon">{getStatusIcon(task.statusDaTarefa)}</div>
               <p>
-                <p className="nome">Nome: {task.nome}</p> 
+                <p className="nome">Nome: {task.nome}</p>
               </p>
               <p>
                 <strong>Descrição:</strong> {task.descricao}
