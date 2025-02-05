@@ -1,0 +1,62 @@
+textarea{
+    resize: none;
+    font-size: 14px;
+    outline: none;
+    box-sizing: border-box;
+    border-radius: 10px;
+    width: 100%;
+    padding: 20px 30px;
+}
+
+.status-task{
+    border-radius: 10px;
+    border: 1px solid #000000;
+    font-size: 14px;
+    outline: none;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px 30px;
+}
+
+.title{
+    font-size: 28px;
+}
+
+.task-name{
+    border-radius: 10px;
+    border: 1px solid #000000;
+    font-size: 14px;
+    outline: none;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px 30px;
+}
+
+.create-tasks-form{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px 150px;
+}
+
+.task-name:focus, .status-task:focus, textarea:focus {
+    border-color: #7ED956;
+}
+
+.submit-button{
+    border: none;
+    border-radius: 20px;
+    padding: 20px;
+    font-size: 16px;
+    color: white;
+    cursor: pointer;
+    background-color: #7ED956;
+    transition: background-color 0.3s ease;
+}
+
+.cancel{
+    color: #c32626;
+    text-decoration: none;
+    font-weight: bold;
+}

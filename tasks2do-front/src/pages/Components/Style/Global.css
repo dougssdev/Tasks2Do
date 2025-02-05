@@ -1,9 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap');
+
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: "M PLUS Rounded 1c", serif;
     background-color: #c9f6c9;
     height: 100vh;
 }
+
+
 
 .main-content {
     padding: 20px;
@@ -22,3 +26,4 @@ body {
     color: #000000;
     font-size: 48px;
   }
+

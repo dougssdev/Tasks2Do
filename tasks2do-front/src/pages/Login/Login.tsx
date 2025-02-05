@@ -51,7 +51,7 @@ const Login = () => {
     <div>
 
       <div className="main-content-login">
-        <form onSubmit={handleLogin}>
+        <form className="login-form" onSubmit={handleLogin}>
           <div className='login'>
             <h2>Nome de usuário: </h2>
             <input 

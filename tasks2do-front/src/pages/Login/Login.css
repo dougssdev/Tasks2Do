@@ -9,7 +9,7 @@
     padding: 20px;
 }
 
-form {
+.login-form {
     background-color: white;
     display: flex;
     flex-direction: column;

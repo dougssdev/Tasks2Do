@@ -28,6 +28,7 @@ const getStatusIcon = (status: Task["statusDaTarefa"]) => {
 };
 
 const Tasks = () => {
+
   const [tasks, setTasks] = useState<Task[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -53,6 +54,10 @@ const Tasks = () => {
 
     fetchTasks();
   }, []);
+
+  const createTask = () => {
+    navigate(`/tarefas/nova_tarefa`)
+  }
 
   return (
     <div className="tasks-page">
@@ -84,7 +89,7 @@ const Tasks = () => {
             </div>
           ))}
         </div>
-        <button className="create-task-button">Criar Tarefa</button>
+        <button className="create-task-button" onClick={createTask}>Criar Tarefa</button>
       </main>
     </div>
   );
