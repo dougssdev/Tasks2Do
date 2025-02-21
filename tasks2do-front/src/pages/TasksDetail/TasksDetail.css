@@ -70,5 +70,21 @@
 .data-status{
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 
 }
+
+.status-dropdown {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  
+  .status-dropdown:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }

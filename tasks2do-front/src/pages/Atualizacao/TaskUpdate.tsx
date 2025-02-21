@@ -6,7 +6,8 @@ import "../Atualizacao/TaskUpdate.css";
 interface Task {
   id: number;
   nome: string;
-  descricao: string
+  descricao: string;
+  statusDaTarefa: "Não_Iniciado" | "Feita" | "Fazendo";
 }
 
 const TaskUpdate = () => {
@@ -75,6 +76,7 @@ const TaskUpdate = () => {
           <p>Descrição:</p>
           <textarea name="descricao" value={task.descricao} onChange={handleChange}></textarea>
 
+          
           <div className="task-update-actions">
             <button type="submit" className="update-button">Atualizar</button>
             <button type="button" className="delete-button" onClick={() => navigate("/minhas_tarefas")}>Cancelar</button>

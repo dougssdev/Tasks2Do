@@ -21,6 +21,7 @@ const TasksDetail = () => {
   const [task, setTask] = useState<Task | null>(null)
   const [error, setError] = useState("");
 
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     const fetchTask = async () => {
@@ -53,8 +54,6 @@ const TasksDetail = () => {
     navigate(`/tarefas/atualizar_tarefa/${id}`);
   };
 
-  if (error) return <p>{error}</p>;
-  if (!task) return <p>Carregando...</p>;
 
   const getStatusIcon = (status: Task["statusDaTarefa"]) => {
     switch (status) {
@@ -69,6 +68,33 @@ const TasksDetail = () => {
     }
   };
 
+  const updateStatus = async (novoStatus: "Não_Iniciado" | "Feita" | "Fazendo") => {
+    if (!task) return;
+
+    try {
+      let endpoint = "";
+
+      if(novoStatus === "Não_Iniciado"){
+        endpoint = `/tarefas/status/nao_iniciada/${id}`
+      }
+      else if (novoStatus === "Feita"){
+        endpoint = `/tarefas/status/feita/${id}`
+      }
+      else if (novoStatus === "Fazendo"){
+        endpoint = `/tarefas/status/fazendo/${id}`
+      }
+
+      await api.put(endpoint, {}, {headers: {Authorization: `Bearer ${token}`}});
+
+      setTask({...task, statusDaTarefa: novoStatus})
+      alert(`Status atualizado para: ${novoStatus}`);
+    } catch (error) {
+      alert("Erro ao atualizar status.")
+    }
+  };
+
+  if (error) return <p>{error}</p>;
+  if (!task) return <p>Carregando...</p>;
 
   return (
 
@@ -83,8 +109,17 @@ const TasksDetail = () => {
           <p><strong>Data:</strong> {task.data_de_adicao} </p>  
           <p><strong>Status:</strong> {task.statusDaTarefa}</p>
         </div>
-        
-        <span className="task-status"> {getStatusIcon(task.statusDaTarefa)} </span>
+
+        <select 
+          value={task.statusDaTarefa}
+          onChange={(e) => updateStatus(e.target.value as "Não_Iniciado" | "Fazendo" | "Feita")}
+          className="status-dropdown">
+            <option value="Não_Iniciado"> Não Iniciado </option>
+            <option value="Fazendo"> Fazendo </option>
+            <option value="Feita"> Feita </option>
+          </select>
+
+          <span className="task-status"> {getStatusIcon(task.statusDaTarefa)} </span>
 
         <div className="task-detail-actions">
           <button className="update-button" onClick={handleUpdate}>Atualizar</button>
