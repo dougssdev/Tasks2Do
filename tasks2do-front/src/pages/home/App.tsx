@@ -8,6 +8,7 @@ import TasksDetail from '../TasksDetail/TasksDetail.tsx'
 import Header from '../Components/Cabecalho.tsx'
 import '../Components/Style/Global.css'
 import CreateTasks from '../CreateTasks/CreateTasks.tsx'
+import TaskUpdate from '../Atualizacao/TaskUpdate.tsx'
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
           <Route path='/cadastro' element={<Cadastro />} />
           <Route path="/tarefas/:id" element={<TasksDetail />} />
           <Route path="/tarefas/nova_tarefa" element={<CreateTasks />}/>
+          <Route path='/tarefas/atualizar_tarefa/:id' element={<TaskUpdate/>}></Route>
         </Routes>
       </BrowserRouter>
 

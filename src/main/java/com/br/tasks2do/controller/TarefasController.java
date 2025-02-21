@@ -133,13 +133,13 @@ public class TarefasController {
         return ResponseEntity.ok(tarefaResponseDTO);
     }
 
-    @PutMapping("/atualizar_tarefa")
+    @PutMapping("/atualizar_tarefa/{id}")
     @Transactional
-    public ResponseEntity<TarefaResponseDTO> atualizaTarefa(@RequestBody AtualizaTarefaDTO dados){
+    public ResponseEntity<TarefaResponseDTO> atualizaTarefa(@PathVariable Integer id, @RequestBody AtualizaTarefaDTO dados){
 
         Usuario usuario = ts.buscaUsuarioLogado();
 
-        Tarefas tarefa = ts.buscaTarefa(dados.id());
+        Tarefas tarefa = ts.buscaTarefa(id);
 
         tarefa.setNome(dados.nome());
         tarefa.setDescricao(dados.descricao());

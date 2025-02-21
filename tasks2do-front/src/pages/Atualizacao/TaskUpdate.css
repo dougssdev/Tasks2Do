@@ -1,0 +1,19 @@
+#task-input-name{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    font-size: 14px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+#task-input-name:focus{
+    border-color: #7ED956;
+}
+
+.task-update-actions{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}

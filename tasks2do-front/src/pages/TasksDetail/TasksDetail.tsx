@@ -50,7 +50,7 @@ const TasksDetail = () => {
 
   const handleUpdate = () => {
 
-    navigate(`/tarefas/editar/${id}`);
+    navigate(`/tarefas/atualizar_tarefa/${id}`);
   };
 
   if (error) return <p>{error}</p>;
