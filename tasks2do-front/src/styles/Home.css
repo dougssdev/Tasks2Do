@@ -1,0 +1,55 @@
+.signup-button{
+    background-color: #7ED956;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 0;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+}
+
+.cadastro-link{
+    text-decoration: none;
+    color: white;
+    padding: 40px;
+    font-size: 24px;
+}
+
+.home-content p {
+    font-size: 24px;
+}
+
+.signin-link{
+    font-size: 16px;
+    text-decoration: none;
+    color: #7ED956;
+}
+
+.home-content{
+    background-color: white;
+    padding: 20px;
+    border-radius: 20px;
+    width: 75%;
+    height: auto;
+
+}
+
+.mockups{
+    width: 75%;  
+    border-radius: 10px;
+}
+
+.tasks-mockups{
+    display: flex;
+    padding: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-content label {
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+}

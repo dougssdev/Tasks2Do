@@ -1,6 +1,6 @@
-import "../tasks/Tasks.css";
+import "../styles/Tasks.css";
 import { useEffect, useState } from "react";
-import api from "../../services/axiosConfig";
+import api from "../services/axiosConfig";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle, faEllipsisH, faCircleMinus } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";

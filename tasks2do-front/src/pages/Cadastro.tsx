@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import "../Login/Login.css";
-import api from "../../services/axiosConfig.tsx"
+import "../styles/Login.css";
+import api from "../services/axiosConfig"
 
 const Cadastro = () => {
 

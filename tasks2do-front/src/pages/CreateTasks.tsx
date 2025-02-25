@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import "./CreateTasks.css"
+import { useState } from "react";
+import "../styles/CreateTasks.css"
 import { useNavigate } from "react-router-dom";
-import api from "../../services/axiosConfig";
-import { StatusDaTarefa } from "./StatusDaTarefa";
+import api from "../services/axiosConfig";
+import { StatusDaTarefa } from "../components/StatusDaTarefa";
 
 
 const CreateTasks = () => {
@@ -30,8 +30,8 @@ const CreateTasks = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        if(!taskData.nome || !taskData.descricao){
-            setError("Todos os campos são obrigatórios")
+        if(!taskData.nome){
+            setError("Insira o nome.")
             return;
         }
 

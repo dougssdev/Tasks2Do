@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import  "./Login.css";
-import api from "../../services/axiosConfig.tsx"
+import  "../styles/Login.css";
+import api from "../services/axiosConfig.tsx"
 
 const Login = () => {
 

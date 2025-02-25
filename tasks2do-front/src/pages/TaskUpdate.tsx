@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom"
-import api from "../../services/axiosConfig";
-import "../Atualizacao/TaskUpdate.css";
+import api from "../services/axiosConfig";
+import "../styles/TaskUpdate.css";
 
 interface Task {
   id: number;
