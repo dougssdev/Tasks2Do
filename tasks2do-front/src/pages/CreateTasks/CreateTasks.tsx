@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./CreateTasks.css"
 import { useNavigate } from "react-router-dom";
 import api from "../../services/axiosConfig";
+import { StatusDaTarefa } from "./StatusDaTarefa";
 
 
 const CreateTasks = () => {
@@ -10,15 +11,20 @@ const CreateTasks = () => {
     const [taskData, setTaskData] = useState({
         nome: "",
         descricao: "",
-        statusDaTarefa: "Não_Iniciado",
+        status: StatusDaTarefa.NaoIniciado,
     });
 
     const [error, setError] = useState("");
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | 
         HTMLTextAreaElement | HTMLSelectElement>) =>{
-        setTaskData({...taskData, [e.target.name]: e.target.value});
+        const {name, value} = e.target;
 
+        if (name === "status"){
+          setTaskData({...taskData, [name]: StatusDaTarefa [value as keyof typeof StatusDaTarefa]});
+        } else {
+          setTaskData({...taskData, [name]: value})
+        }
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -53,10 +59,10 @@ const CreateTasks = () => {
     
     
             <label className="title">Status:</label>
-            <select className="status-task" name="statusDaTarefa" value={taskData.statusDaTarefa} onChange={handleChange}>
-              <option value="Não_Iniciado">Não Iniciado</option>
-              <option value="Fazendo">Fazendo</option>
-              <option value="Feita">Feita</option>
+            <select className="status-task" name="status" value={taskData.status} onChange={handleChange} required >
+              {Object.values(StatusDaTarefa).map((status) => (
+                <option key={status} value={status}>{status.replace("_", " ")}</option>
+              ))}
             </select>
     
             <div className="task-form-actions">

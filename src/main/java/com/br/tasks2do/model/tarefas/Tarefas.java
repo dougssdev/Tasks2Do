@@ -38,7 +38,7 @@ public class Tarefas {
         this.nome = dados.nome();
         this.descricao = dados.descricao();
         this.data_de_adicao = LocalDate.now();
-        this.status_da_tarefa = StatusDaTarefa.Fazendo;
+        this.status_da_tarefa = dados.status();
     }
 
     public Tarefas (AtualizaTarefaDTO dados){
