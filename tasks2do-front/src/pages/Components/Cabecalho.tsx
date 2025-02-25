@@ -1,22 +1,32 @@
 import "../Components/Style/Header.css"
-import { useNavigate } from "react-router-dom"
+import { NavLink } from "react-router-dom"
+import logo from "../../assets/Task2DoLogo.png"
+import { useEffect, useState } from "react";
 
 const Header = () => {
-    const navigate = useNavigate();
+    const [isLoggedIn, setIsLoggedIn] = useState(false); 
+
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        setIsLoggedIn(!!token);
+    }, []);
 
     const handleLogout = () => {
+        localStorage.removeItem ("token");
+        setIsLoggedIn(false);
+    }
 
-        localStorage.removeItem("token");
-
-        navigate("/login");
-    };
     return (
 
         <div className='bar'>
             <div className="logo-div">
-                <img className= 'logo' src="src\assets\Task2DoLogo.png" alt="Logo Tasks2Do" />
+                <img className= 'logo' src={logo} alt="Logo Tasks2Do" />
             </div>
-            <button className='logout-button' onClick={handleLogout}> Sair </button>
+            {isLoggedIn && (
+                <NavLink to="/login" className="logout-button" onClick={handleLogout}>
+                Sair
+            </NavLink>
+            )}
         </div>
 
     )

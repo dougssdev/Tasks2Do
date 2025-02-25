@@ -16,17 +16,17 @@ function App() {
 
     <div className='App'>
 
-
+      
       <BrowserRouter>
         <Header />
-        <Routes>
-          <Route path='/login' element={<Login />} />
-          <Route path='/minhas_tarefas' element={<Tasks />} />
-          <Route path='/cadastro' element={<Cadastro />} />
-          <Route path="/tarefas/:id" element={<TasksDetail />} />
-          <Route path="/tarefas/nova_tarefa" element={<CreateTasks />}/>
-          <Route path='/tarefas/atualizar_tarefa/:id' element={<TaskUpdate/>}></Route>
-        </Routes>
+          <Routes>
+            <Route path='/login' element={<Login />} />
+            <Route path='/minhas_tarefas' element={<Tasks />} />
+            <Route path='/cadastro' element={<Cadastro />} />
+            <Route path="/tarefas/:id" element={<TasksDetail />} />
+            <Route path="/tarefas/nova_tarefa" element={<CreateTasks />}/>
+            <Route path='/tarefas/atualizar_tarefa/:id' element={<TaskUpdate/>}></Route>
+          </Routes>
       </BrowserRouter>
 
     </div>
