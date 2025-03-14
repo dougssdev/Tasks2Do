@@ -1,6 +1,6 @@
 HELP.md
-target/
-!.mvn/wrapper/maven-wrapper.jar
+tasks2do-back/target/
+!tasks2do-back/src/main/resources/.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
 
@@ -14,7 +14,7 @@ target/
 .sts4-cache
 
 ### IntelliJ IDEA ###
-.idea
+tasks2do-back/.idea
 *.iws
 *.iml
 *.ipr
@@ -31,7 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
-/src/main/resources/application.properties
+/tasks2do-back/src/main/resources/application.properties
 /.gitattributes
-/.mvn/wrapper/maven-wrapper.properties
+/tasks2do-back/src/main/resources/.mvn/wrapper/maven-wrapper.properties
 

@@ -1,0 +1,56 @@
+
+services:
+  backend:
+    build: ./tasks2do-back
+    ports:
+      - "8080:8080"
+    depends_on:
+      database:
+       condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://database:3306/tasks2do
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+    networks:
+      - rede
+
+
+  frontend:
+    build: ./tasks2do-front
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./tasks2do-front:/app
+      - /app/node_modules
+    command: ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
+    depends_on:
+      - backend
+    networks:
+      - rede
+
+  database:
+    image: mysql:8
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: tasks2do
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - rede
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 10s
+      retries: 5
+      start_period: 10s
+
+
+networks:
+  rede:
+    driver: bridge
+
+volumes:
+  mysql_data: 
+
