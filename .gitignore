@@ -35,3 +35,7 @@ build/
 /.gitattributes
 /tasks2do-back/src/main/resources/.mvn/wrapper/maven-wrapper.properties
 
+.HELP.md
+.mvnw
+.mvnw.cmd
+.idea
