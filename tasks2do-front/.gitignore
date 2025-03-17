@@ -22,3 +22,15 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+.gitignore
+
+.README.md
+.package-lock.json
+.env
+.tsconfig.app.json
+.tsconfig.json
+.tsconfig.node.json
+
+.index.html
+.eslint.config.js
