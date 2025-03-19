@@ -102,8 +102,8 @@ tasks2do/
 ### **Autenticação**
 | Método | Endpoint         | Descrição |
 |---------|----------------|-------------|
-| POST    | `/login`   | Login e geração de token JWT |
-| POST    | `/cadastro`     | Cadastro de novo usuário |
+| POST    | `/auth/login`   | Login e geração de token JWT |
+| POST    | `/auth/cadastro`     | Cadastro de novo usuário |
 
 ### **Tarefas**
 | Método | Endpoint                  | Descrição |
